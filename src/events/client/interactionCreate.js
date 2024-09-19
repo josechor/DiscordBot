@@ -26,6 +26,16 @@ module.exports = {
       } catch (error) {
         console.log(error);
       }
+    } else if (interaction.isStringSelectMenu()) {
+      const { selectMenus } = client;
+      const { customId } = interaction;
+      const menu = selectMenus.get(customId);
+      if (!menu) throw new Error("No hay ningún código apra este selectMenu");
+      try {
+        await menu.execute(interaction, client);
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
 };
